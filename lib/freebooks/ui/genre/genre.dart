@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:neom_commons/core/ui/widgets/appbar_child.dart';
-import 'package:neom_commons/core/utils/app_color.dart';
+import 'package:neom_commons/ui/theme/app_color.dart';
+import 'package:neom_commons/ui/widgets/appbar_child.dart';
 import 'package:provider/provider.dart';
 
 import '../../domain/models/freebook.dart';
@@ -30,7 +30,7 @@ class GenreState extends State<Genre> {
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback(
-      (_) => Provider.of<FreebooksGenreProvider>(context, listen: false)
+      (controller) => Provider.of<FreebooksGenreProvider>(context, listen: false)
           .getFeed(widget.url),
     );
   }

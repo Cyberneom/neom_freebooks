@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:neom_commons/core/app_flavour.dart';
-import 'package:neom_commons/core/utils/constants/app_assets.dart';
+import 'package:neom_commons/utils/constants/app_assets.dart';
+import 'package:neom_core/app_properties.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../domain/models/freebook.dart';
@@ -56,7 +56,7 @@ class BookListItem extends StatelessWidget {
                 child: Hero(
                   tag: imgTag,
                   child: CachedNetworkImage(
-                    imageUrl: entry.imgUrl ?? AppFlavour.getNoImageUrl(),
+                    imageUrl: entry.imgUrl ?? AppProperties.getNoImageUrl(),
                     placeholder: (context, url) => const SizedBox(
                       height: 150.0,
                       width: 100.0,

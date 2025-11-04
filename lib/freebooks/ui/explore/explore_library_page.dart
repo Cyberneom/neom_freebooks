@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:neom_commons/core/ui/widgets/app_circular_progress_indicator.dart';
-import 'package:neom_commons/core/utils/app_color.dart';
+import 'package:neom_commons/ui/theme/app_color.dart';
+import 'package:neom_commons/ui/widgets/app_circular_progress_indicator.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/freebooks_api.dart';

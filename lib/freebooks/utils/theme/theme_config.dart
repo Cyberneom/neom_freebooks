@@ -12,7 +12,7 @@ class ThemeConfig {
     primaryColor: lightPrimary,
     scaffoldBackgroundColor: lightBG,
     appBarTheme: AppBarTheme(
-      color: lightPrimary,
+      backgroundColor: lightPrimary,
       elevation: 0.0,
       titleTextStyle: const TextStyle(
         color: Colors.black,
@@ -30,7 +30,7 @@ class ThemeConfig {
     primaryColor: darkPrimary,
     scaffoldBackgroundColor: darkBG,
     appBarTheme: AppBarTheme(
-      color: darkPrimary,
+      backgroundColor: darkPrimary,
       elevation: 0.0,
       titleTextStyle: const TextStyle(
         color: Colors.white,

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:neom_commons/core/app_flavour.dart';
+import 'package:neom_core/app_properties.dart';
 
 import '../ui/widgets/custom_alert.dart';
 
@@ -19,7 +19,7 @@ class Dialogs {
             children: <Widget>[
               const SizedBox(height: 15.0),
               Text(
-                AppFlavour.getAppName(),
+                AppProperties.getAppName(),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16.0,

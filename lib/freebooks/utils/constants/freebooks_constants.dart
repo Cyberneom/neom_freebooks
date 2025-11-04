@@ -8,6 +8,6 @@ class FreebooksConstants {
         dm = decimals <= 0 ? 0 : decimals,
         sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
         i = (log(bytes) / log(k)).floor();
-    return (((bytes / pow(k, i)).toStringAsFixed(dm)) + ' ' + sizes[i]);
+    return '${((bytes / pow(k, i)).toStringAsFixed(dm))} ${sizes[i]}';
   }
 }

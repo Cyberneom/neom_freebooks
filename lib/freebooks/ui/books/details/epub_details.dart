@@ -3,11 +3,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
-import 'package:neom_commons/core/ui/widgets/app_circular_progress_indicator.dart';
-import 'package:neom_commons/core/ui/widgets/appbar_child.dart';
-import 'package:neom_commons/core/ui/widgets/right_side_company_logo.dart';
-import 'package:neom_commons/core/utils/app_color.dart';
-import 'package:neom_commons/core/utils/constants/app_route_constants.dart';
+import 'package:neom_commons/ui/theme/app_color.dart';
+import 'package:neom_commons/ui/widgets/app_circular_progress_indicator.dart';
+import 'package:neom_commons/ui/widgets/appbar_child.dart';
+import 'package:neom_commons/ui/widgets/right_side_company_logo.dart';
+import 'package:neom_core/utils/constants/app_route_constants.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/models/category.dart';
@@ -40,7 +40,7 @@ class EPUBDetailsState extends State<EPUBDetails> {
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback(
-      (_) {
+      (controller) {
 
         Provider.of<FreebooksDetailsProvider>(context, listen: false)
             .setEntry(widget.entry);
@@ -53,7 +53,7 @@ class EPUBDetailsState extends State<EPUBDetails> {
   @override
   Widget build(BuildContext context) {
     return Consumer<FreebooksDetailsProvider>(
-      builder: (BuildContext context, FreebooksDetailsProvider _,
+      builder: (BuildContext context, FreebooksDetailsProvider provider,
           Widget? child) {
         return Scaffold(
           backgroundColor: AppColor.main75,
@@ -66,7 +66,7 @@ class EPUBDetailsState extends State<EPUBDetails> {
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             children: <Widget>[
               const SizedBox(height: 10.0),
-              _buildImageTitleSection(_),
+              _buildImageTitleSection(provider),
               const SizedBox(height: 30.0),
               _buildSectionTitle('Descripción del libro'),
               _buildDivider(),
@@ -78,7 +78,7 @@ class EPUBDetailsState extends State<EPUBDetails> {
               _buildSectionTitle('Más del autor'),
               _buildDivider(),
               const SizedBox(height: 10.0),
-              _buildMoreBook(_),
+              _buildMoreBook(provider),
             ],
           ),
         );
@@ -92,7 +92,7 @@ class EPUBDetailsState extends State<EPUBDetails> {
     );
   }
 
-  Row _buildImageTitleSection(FreebooksDetailsProvider _) {
+  Row _buildImageTitleSection(FreebooksDetailsProvider provider) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,7 +154,7 @@ class EPUBDetailsState extends State<EPUBDetails> {
                   height: 50.0,
                   width: MediaQuery.of(context).size.width,
                   //TODO ADD LOGIC TO DOWNLOAD PDFS AND EPUBS FOR OFFLINE READ
-                  child: !_.isDownloadable ? _buildReadOnlineButton(_, context) : _buildDownloadReadButton(_, context),
+                  child: !provider.isDownloadable ? _buildReadOnlineButton(provider, context) : _buildDownloadReadButton(provider, context),
                 ),
               ),
             ],
@@ -175,16 +175,16 @@ class EPUBDetailsState extends State<EPUBDetails> {
     );
   }
 
-  Widget _buildMoreBook(FreebooksDetailsProvider _) {
-    if (_.isLoading) {
+  Widget _buildMoreBook(FreebooksDetailsProvider provider) {
+    if (provider.isLoading) {
       return const AppCircularProgressIndicator();
     } else {
       return ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: _.related.feed!.entry!.length,
+        itemCount: provider.related.feed!.entry!.length,
         itemBuilder: (BuildContext context, int index) {
-          Freebook entry = _.related.feed!.entry![index];
+          Freebook entry = provider.related.feed!.entry![index];
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: BookListItem(
@@ -214,7 +214,7 @@ class EPUBDetailsState extends State<EPUBDetails> {
   TextButton _buildReadOnlineButton(FreebooksDetailsProvider provider, BuildContext context) {
     return TextButton(
         onPressed: () {
-          Get.toNamed(AppRouteConstants.EPUBViewer,
+          Get.toNamed(AppRouteConstants.epubViewer,
               arguments: [widget.entry, true,]
           );
         },

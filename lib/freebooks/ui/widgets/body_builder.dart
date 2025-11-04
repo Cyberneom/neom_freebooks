@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:neom_commons/core/ui/widgets/app_circular_progress_indicator.dart';
+import 'package:neom_commons/ui/widgets/app_circular_progress_indicator.dart';
 import '../../utils/enum/api_request_status.dart';
 import 'error_widget.dart';
 import 'loading_widget.dart';
@@ -38,8 +38,6 @@ class BodyBuilder extends StatelessWidget {
         );
       case APIRequestStatus.loaded:
         return child;
-      default:
-        return const LoadingWidget();
-    }
+      }
   }
 }

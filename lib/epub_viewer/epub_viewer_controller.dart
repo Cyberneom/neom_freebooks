@@ -3,18 +3,16 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:epub_view/epub_view.dart';
-// import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:neom_commons/core/data/implementations/user_controller.dart';
-import 'package:neom_commons/core/domain/model/app_profile.dart';
-import 'package:neom_commons/core/utils/app_utilities.dart';
-import 'package:neom_commons/core/utils/constants/app_page_id_constants.dart';
-
+import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
+import 'package:neom_core/app_config.dart';
+import 'package:neom_core/domain/model/app_profile.dart';
+import 'package:neom_core/domain/use_cases/user_service.dart';
 
 class EPUBViewerController extends GetxController {
 
-  final userController = Get.find<UserController>();
+  final userServiceImpl = Get.find<UserService>();
 
   final Rx<AppProfile> profile = AppProfile().obs;
   RxBool isLoading = true.obs;
@@ -43,11 +41,11 @@ class EPUBViewerController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    AppUtilities.logger.d("EPUB Viewer Controller");
+    AppConfig.logger.d("EPUB Viewer Controller");
 
     try {
 
-      profile.value = userController.profile;
+      profile.value = userServiceImpl.profile;
       if(Get.arguments != null && Get.arguments.isNotEmpty) {
 
         ///DEPRECATED
@@ -56,7 +54,7 @@ class EPUBViewerController extends GetxController {
         //   epubUrl = freebook.link![3].href!;
         //   epubTitle = freebook.title!;
         // } else {
-        //   AppUtilities.logger.e("A different object was send to EPUB Viewer Controller");
+        //   AppConfig.logger.e("A different object was send to EPUB Viewer Controller");
         // }
 
         if(Get.arguments.length > 1) isRemote = Get.arguments[1] ?? true;
@@ -95,18 +93,18 @@ class EPUBViewerController extends GetxController {
       }
       isLoading.value = false;
     } catch (e) {
-      AppUtilities.logger.e(e);
+      AppConfig.logger.e(e);
     }
   }
 
   @override
   void onReady() async {
     super.onReady();
-    AppUtilities.logger.d("EPUB View Controller Ready");
+    AppConfig.logger.d("EPUB View Controller Ready");
     try {
 
     } catch (e) {
-      AppUtilities.logger.e(e.toString());
+      AppConfig.logger.e(e.toString());
     }
 
     update([AppPageIdConstants.epubViewer]);
@@ -135,7 +133,7 @@ class EPUBViewerController extends GetxController {
   }
 
   void pageChanged(int page) {
-    AppUtilities.logger.d('page change: $page/$pdfPages');
+    AppConfig.logger.d('page change: $page/$pdfPages');
     currentPage = page;
     currentPercentage = ((currentPage*100)/pdfPages).ceil();
     if(currentPercentage == 0) currentPercentage = 1;

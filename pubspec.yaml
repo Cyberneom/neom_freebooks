@@ -1,27 +1,31 @@
 name: neom_freebooks
 description: FreeBooks to read in EPUB
-version: 1.0.0
+version: 1.1.0
 homepage: https://github.com/Cyberneom/neom_freebooks
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=3.8.0 <4.0.0"
+  flutter: ">=1.19.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
+  neom_core:
+    git:
+      url: git@github.com:Cyberneom/neom_core.git
   neom_commons:
     git:
       url: git@github.com:Cyberneom/neom_commons.git
+
   provider: ^6.1.2
   xml2json: ^6.2.4
   objectdb: ^1.2.1+1 #VERIFY IF NEEDED
   flutter_spinkit: ^5.2.1
   fluttertoast: ^8.2.8
-  epub_view:
-    path: ../epub_view
+  dio: ^5.8.0+1
+  epub_view: ^3.2.0
 
 dev_dependencies:
   flutter_test:

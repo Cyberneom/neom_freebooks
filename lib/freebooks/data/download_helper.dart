@@ -1,8 +1,5 @@
-// ignore_for_file: implementation_imports
-
 import 'dart:io';
-
-import 'package:neom_commons/core/utils/app_utilities.dart';
+import 'package:neom_core/app_config.dart';
 import 'package:objectdb/objectdb.dart';
 import 'package:objectdb/src/objectdb_storage_filesystem.dart';
 import 'package:path_provider/path_provider.dart';
@@ -44,7 +41,7 @@ class DownloadsDB {
     final db = ObjectDB(FileSystemStorage(await getPath()));
     List val = await db.find({});
     await db.close();
-    AppUtilities.logger.d(val);
+    AppConfig.logger.d(val);
     return val;
   }
 

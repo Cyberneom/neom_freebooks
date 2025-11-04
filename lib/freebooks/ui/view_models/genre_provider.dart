@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:neom_commons/core/utils/app_utilities.dart';
+import 'package:neom_core/app_config.dart';
 
 import '../../data/freebooks_api.dart';
 import '../../domain/models/category_feed.dart';
@@ -39,7 +39,7 @@ class FreebooksGenreProvider extends ChangeNotifier {
 
   Future<void> getFeed(String url) async {
     setApiRequestStatus(APIRequestStatus.loading);
-    AppUtilities.logger.d(url);
+    AppConfig.logger.d(url);
     try {
       CategoryFeed feed = await api.getCategory(url);
       items = feed.feed!.entry!;

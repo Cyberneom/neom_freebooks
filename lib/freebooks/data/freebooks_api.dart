@@ -13,9 +13,9 @@ import '../domain/models/link_1.dart';
 
 class FreebooksAPI {
 
-  Dio _dio = Dio();
+  final Dio _dio = Dio();
+
   static const String baseURL = 'https://gutendex.com/books';
-  ///ENDPOINT IS404 static String baseURL = 'https://catalog.feedbooks.com';
 
   Future<CategoryFeed> fetchBooks({String language = 'es'}) async {
     try {

@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:neom_commons/core/app_flavour.dart';
-import 'package:neom_commons/core/utils/app_utilities.dart';
+import 'package:neom_core/app_config.dart';
+import 'package:neom_core/app_properties.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -34,7 +34,7 @@ class FreebooksDetailsProvider extends ChangeNotifier {
       setRelated(feed);
       setLoading(false);
     } catch (e) {
-      AppUtilities.logger.e(e.toString());
+      AppConfig.logger.e(e.toString());
     }
   }
 
@@ -55,7 +55,7 @@ class FreebooksDetailsProvider extends ChangeNotifier {
 
   void removeFav() async {
     favDB.remove({'id': entry!.id!}).then((v) {
-      AppUtilities.logger.d(v);
+      AppConfig.logger.d(v);
       checkFav();
     });
   }
@@ -66,7 +66,7 @@ class FreebooksDetailsProvider extends ChangeNotifier {
     if (downloads.isNotEmpty) {
       // check if book has been deleted
       String path = downloads[0]['path'];
-      AppUtilities.logger.d(path);
+      AppConfig.logger.d(path);
       if (await File(path).exists()) {
         setDownloaded(true);
       } else {
@@ -90,13 +90,13 @@ class FreebooksDetailsProvider extends ChangeNotifier {
 
   Future<void> removeDownload() async {
     dlDB.remove({'id': entry!.id!}).then((v) {
-      AppUtilities.logger.d(v);
+      AppConfig.logger.d(v);
       checkDownload();
     });
   }
 
   Future downloadFile(BuildContext context, String url, String filename) async {
-    AppUtilities.logger.d(url);
+    AppConfig.logger.d(url);
     PermissionStatus permission = await Permission.storage.status;
 
     if (permission != PermissionStatus.granted) {
@@ -116,14 +116,14 @@ class FreebooksDetailsProvider extends ChangeNotifier {
         ? await getExternalStorageDirectory()
         : await getApplicationDocumentsDirectory();
     if (Platform.isAndroid) {
-      Directory('${appDocDir!.path.split('Android')[0]}${AppFlavour.getAppName()}')
+      Directory('${appDocDir!.path.split('Android')[0]}${AppProperties.getAppName()}')
           .createSync();
     }
 
     String path = Platform.isIOS
         ? '${appDocDir!.path}/$filename.epub'
-        : '${appDocDir!.path.split('Android')[0]}${AppFlavour.getAppName()}/$filename.epub';
-    AppUtilities.logger.d(path);
+        : '${appDocDir!.path.split('Android')[0]}${AppProperties.getAppName()}/$filename.epub';
+    AppConfig.logger.d(path);
     File file = File(path);
     if (!await file.exists()) {
       await file.create();

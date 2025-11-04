@@ -23,7 +23,7 @@ class FavoritesState extends State<Favorites> {
 
   void getFavorites() {
     SchedulerBinding.instance.addPostFrameCallback(
-      (_) {
+      (controller) {
         if (mounted) {
           Provider.of<FreebooksFavoritesProvider>(context, listen: false).listen();
         }

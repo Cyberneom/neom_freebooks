@@ -126,7 +126,7 @@ class ProfileState extends State<Profile> {
   void showAbout() {
     showDialog(
       context: context,
-      builder: (_) {
+      builder: (controller) {
         return AlertDialog(
           title: const Text(
             'About',

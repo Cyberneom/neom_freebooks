@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
-import 'package:neom_commons/core/utils/app_utilities.dart';
+import 'package:neom_core/app_config.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../data/download_helper.dart';
@@ -182,7 +182,7 @@ class DownloadsState extends State<Downloads> {
       setState(() {
         dls.removeAt(index);
       });
-      AppUtilities.logger.d('done');
+      AppConfig.logger.d('done');
     });
   }
 }

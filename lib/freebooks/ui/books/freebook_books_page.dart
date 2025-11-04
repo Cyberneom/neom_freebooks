@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
-import 'package:neom_commons/core/utils/app_color.dart';
-import 'package:neom_commons/core/utils/app_theme.dart';
-import 'package:neom_commons/core/utils/constants/app_translation_constants.dart';
+import 'package:neom_commons/ui/theme/app_color.dart';
+import 'package:neom_commons/ui/theme/app_theme.dart';
+import 'package:neom_commons/utils/constants/translations/app_translation_constants.dart';
+import 'package:neom_commons/utils/constants/translations/common_translation_constants.dart';
 import 'package:provider/provider.dart';
 
 import '../../domain/models/freebook.dart';
@@ -28,7 +29,7 @@ class FreebookBooksPageState extends State<FreebookBooksPage> with AutomaticKeep
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback(
-      (_) => Provider.of<FreebooksHomeProvider>(context, listen: false).getFeeds(),
+      (controller) => Provider.of<FreebooksHomeProvider>(context, listen: false).getFeeds(),
     );
   }
 
@@ -69,7 +70,7 @@ class FreebookBooksPageState extends State<FreebookBooksPage> with AutomaticKeep
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppTheme.heightSpace10,
-                Text(AppTranslationConstants.publicDomainReadings.tr,
+                Text(CommonTranslationConstants.publicDomainReadings.tr,
                     style: Theme.of(context).textTheme.headlineSmall!
                         .copyWith(color: AppColor.white)
                 ),
