@@ -3,16 +3,16 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:epub_view/epub_view.dart';
-import 'package:get/get.dart';
+import 'package:sint/sint.dart';
 import 'package:http/http.dart' as http;
 import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
 import 'package:neom_core/app_config.dart';
 import 'package:neom_core/domain/model/app_profile.dart';
 import 'package:neom_core/domain/use_cases/user_service.dart';
 
-class EPUBViewerController extends GetxController {
+class EPUBViewerController extends SintController {
 
-  final userServiceImpl = Get.find<UserService>();
+  final userServiceImpl = Sint.find<UserService>();
 
   final Rx<AppProfile> profile = AppProfile().obs;
   RxBool isLoading = true.obs;
@@ -46,21 +46,21 @@ class EPUBViewerController extends GetxController {
     try {
 
       profile.value = userServiceImpl.profile;
-      if(Get.arguments != null && Get.arguments.isNotEmpty) {
+      if(Sint.arguments != null && Sint.arguments.isNotEmpty) {
 
         ///DEPRECATED
-        // if(Get.arguments[0] is Freebook) {
-        //   freebook = Get.arguments[0];
+        // if(Sint.arguments[0] is Freebook) {
+        //   freebook = Sint.arguments[0];
         //   epubUrl = freebook.link![3].href!;
         //   epubTitle = freebook.title!;
         // } else {
         //   AppConfig.logger.e("A different object was send to EPUB Viewer Controller");
         // }
 
-        if(Get.arguments.length > 1) isRemote = Get.arguments[1] ?? true;
-        if(Get.arguments.length > 2) currentPage = Get.arguments[2] ?? 1;
-        if(Get.arguments.length > 3) pdfPages = Get.arguments[3] ?? 250;
-        if(Get.arguments.length > 4) allowFullAccess = Get.arguments[4] ?? true;
+        if(Sint.arguments.length > 1) isRemote = Sint.arguments[1] ?? true;
+        if(Sint.arguments.length > 2) currentPage = Sint.arguments[2] ?? 1;
+        if(Sint.arguments.length > 3) pdfPages = Sint.arguments[3] ?? 250;
+        if(Sint.arguments.length > 4) allowFullAccess = Sint.arguments[4] ?? true;
 
         if(isRemote) {
           final response = await http.get(Uri.parse(epubUrl));

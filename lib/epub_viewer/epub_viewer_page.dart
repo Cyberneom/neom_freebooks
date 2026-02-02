@@ -1,6 +1,6 @@
 import 'package:epub_view/epub_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:sint/sint.dart';
 import 'package:neom_commons/ui/theme/app_color.dart';
 import 'package:neom_commons/ui/theme/app_theme.dart';
 import 'package:neom_commons/ui/widgets/app_circular_progress_indicator.dart';
@@ -15,7 +15,7 @@ class EPUBViewerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<EPUBViewerController>(
+    return SintBuilder<EPUBViewerController>(
       id: AppPageIdConstants.epubViewer,
       init: EPUBViewerController(),
       builder: (controller) => Obx(()=> Scaffold(

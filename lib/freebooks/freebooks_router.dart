@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:sint/sint.dart';
 import 'package:neom_core/utils/constants/app_route_constants.dart';
 
 import '../epub_viewer/epub_viewer_page.dart';
@@ -46,8 +46,8 @@ class NeomFreebooksRouter {
 
 class NeomFreebooksRoutes {
 
-  static final List<GetPage<dynamic>> routes = [
-    GetPage(
+  static final List<SintPage<dynamic>> routes = [
+    SintPage(
         name: AppRouteConstants.epubViewer,
         page: () => const EPUBViewerPage(),
         transition: Transition.zoom

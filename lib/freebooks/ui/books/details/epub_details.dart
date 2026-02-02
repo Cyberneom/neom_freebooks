@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 // import 'package:epub_viewer/epub_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:get/get.dart';
+import 'package:sint/sint.dart';
 import 'package:neom_commons/ui/theme/app_color.dart';
 import 'package:neom_commons/ui/widgets/app_circular_progress_indicator.dart';
 import 'package:neom_commons/ui/widgets/appbar_child.dart';
@@ -214,7 +214,7 @@ class EPUBDetailsState extends State<EPUBDetails> {
   TextButton _buildReadOnlineButton(FreebooksDetailsProvider provider, BuildContext context) {
     return TextButton(
         onPressed: () {
-          Get.toNamed(AppRouteConstants.epubViewer,
+          Sint.toNamed(AppRouteConstants.epubViewer,
               arguments: [widget.entry, true,]
           );
         },
