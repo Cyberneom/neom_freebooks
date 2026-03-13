@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 // import 'package:epub_viewer/epub_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:neom_commons/ui/widgets/images/handled_cached_network_image.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:sint/sint.dart';
 import 'package:neom_commons/ui/theme/app_color.dart';
@@ -15,7 +15,6 @@ import '../../../domain/models/freebook.dart';
 import '../../view_models/details_provider.dart';
 import '../../widgets/book_list_item.dart';
 import '../../widgets/description_text.dart';
-import '../../widgets/loading_widget.dart';
 
 class EPUBDetails extends StatefulWidget {
   final Freebook entry;
@@ -56,7 +55,7 @@ class EPUBDetailsState extends State<EPUBDetails> {
       builder: (BuildContext context, FreebooksDetailsProvider provider,
           Widget? child) {
         return Scaffold(
-          backgroundColor: AppColor.main75,
+          backgroundColor: AppColor.surfaceElevated,
           appBar: AppBarChild(
             actionWidgets: const [
               RightSideCompanyLogo()
@@ -99,17 +98,12 @@ class EPUBDetailsState extends State<EPUBDetails> {
       children: <Widget>[
         Hero(
           tag: widget.imgTag,
-          child: CachedNetworkImage(
-            imageUrl: '${widget.entry.link![1].href}',
-            placeholder: (context, url) => const SizedBox(
-              height: 200.0,
-              width: 130.0,
-              child: LoadingWidget(),
-            ),
-            errorWidget: (context, url, error) => const Icon(Icons.image_not_supported),
+          child: HandledCachedNetworkImage(
+            '${widget.entry.link![1].href}',
             fit: BoxFit.cover,
             height: 200.0,
             width: 130.0,
+            enableFullScreen: false,
           ),
         ),
         const SizedBox(width: 20.0),

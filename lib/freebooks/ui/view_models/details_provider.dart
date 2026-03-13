@@ -1,6 +1,6 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:neom_core/utils/platform/core_io.dart';
 import 'package:neom_core/app_config.dart';
 import 'package:neom_core/app_properties.dart';
 import 'package:path_provider/path_provider.dart';
@@ -112,6 +112,7 @@ class FreebooksDetailsProvider extends ChangeNotifier {
   }
 
   Future<void> startDownload(BuildContext context, String url, String filename) async {
+    if (kIsWeb) return;
     Directory? appDocDir = Platform.isAndroid
         ? await getExternalStorageDirectory()
         : await getApplicationDocumentsDirectory();

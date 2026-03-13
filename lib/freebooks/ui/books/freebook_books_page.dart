@@ -39,7 +39,7 @@ class FreebookBooksPageState extends State<FreebookBooksPage> with AutomaticKeep
     return Consumer<FreebooksHomeProvider>(
       builder: (BuildContext context, FreebooksHomeProvider homeProvider, Widget? child) {
         return Scaffold(
-          backgroundColor: AppColor.main50,
+          backgroundColor: AppColor.scaffold,
           body: BodyBuilder(
             apiRequestStatus: homeProvider.apiRequestStatus,
             child: _buildBodyList(homeProvider),

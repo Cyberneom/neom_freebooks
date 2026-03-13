@@ -1,11 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:neom_commons/ui/widgets/images/handled_cached_network_image.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../domain/models/freebook.dart';
 import '../../freebooks_router.dart';
 import '../books/details/epub_details.dart';
-import 'loading_widget.dart';
 
 class BookCard extends StatelessWidget {
   final String img;
@@ -54,14 +53,10 @@ class BookCard extends StatelessWidget {
             ),
             child: Hero(
               tag: imgTag,
-              child: CachedNetworkImage(
-                imageUrl: img,
-                placeholder: (context, url) => const LoadingWidget(isImage: true,),
-                errorWidget: (context, url, error) => Image.asset(
-                  'assets/images/place.png',
-                  fit: BoxFit.cover,
-                ),
+              child: HandledCachedNetworkImage(
+                img,
                 fit: BoxFit.cover,
+                enableFullScreen: false,
               ),
             ),
           ),

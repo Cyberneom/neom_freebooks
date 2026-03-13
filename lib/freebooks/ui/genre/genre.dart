@@ -41,7 +41,7 @@ class GenreState extends State<Genre> {
       builder: (BuildContext context, FreebooksGenreProvider provider, Widget? child) {
         return Scaffold(
           appBar: AppBarChild(title: widget.title, color: AppColor.bondiBlue75,),
-          backgroundColor: AppColor.getMain(),
+          backgroundColor: AppColor.scaffold,
           body: _buildBody(provider),
         );
       },

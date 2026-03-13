@@ -1,13 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:neom_commons/utils/constants/app_assets.dart';
+import 'package:neom_commons/ui/widgets/images/handled_cached_network_image.dart';
 import 'package:neom_core/app_properties.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../domain/models/freebook.dart';
 import '../../freebooks_router.dart';
 import '../books/details/epub_details.dart';
-import 'loading_widget.dart';
 
 class BookListItem extends StatelessWidget {
   final Freebook entry;
@@ -55,24 +53,12 @@ class BookListItem extends StatelessWidget {
                 ),
                 child: Hero(
                   tag: imgTag,
-                  child: CachedNetworkImage(
-                    imageUrl: entry.imgUrl ?? AppProperties.getNoImageUrl(),
-                    placeholder: (context, url) => const SizedBox(
-                      height: 150.0,
-                      width: 100.0,
-                      child: LoadingWidget(
-                        isImage: true,
-                      ),
-                    ),
-                    errorWidget: (context, url, error) => Image.asset(
-                      AppAssets.noImageFound,
-                      fit: BoxFit.cover,
-                      height: 150.0,
-                      width: 100.0,
-                    ),
+                  child: HandledCachedNetworkImage(
+                    entry.imgUrl ?? AppProperties.getNoImageUrl(),
                     fit: BoxFit.cover,
                     height: 150.0,
                     width: 100.0,
+                    enableFullScreen: false,
                   ),
                 ),
               ),

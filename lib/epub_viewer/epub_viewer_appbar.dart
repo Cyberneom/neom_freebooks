@@ -23,7 +23,7 @@ class EPUBViewerAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(title.capitalize, style: TextStyle(color: Colors.white.withOpacity(0.8),
           fontWeight: FontWeight.bold),
       ),
-      backgroundColor: color ?? AppColor.appBar,
+      backgroundColor: color ?? AppColor.surfaceElevated,
       elevation: 0.0,
       actions: [
         TextButton(

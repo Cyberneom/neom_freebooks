@@ -1,13 +1,11 @@
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:flutter/material.dart';
+import 'package:neom_commons/ui/widgets/images/handled_cached_network_image.dart';
 import 'package:neom_core/app_config.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../data/download_helper.dart';
-import '../widgets/loading_widget.dart';
 
 class Downloads extends StatefulWidget {
   const Downloads({super.key});
@@ -69,22 +67,12 @@ class DownloadsState extends State<Downloads> {
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
               child: Row(
                 children: <Widget>[
-                  CachedNetworkImage(
-                    imageUrl: dl['image'],
-                    placeholder: (context, url) => const SizedBox(
-                      height: 70.0,
-                      width: 70.0,
-                      child: LoadingWidget(),
-                    ),
-                    errorWidget: (context, url, error) => Image.asset(
-                      'assets/images/place.png',
-                      fit: BoxFit.cover,
-                      height: 70.0,
-                      width: 70.0,
-                    ),
+                  HandledCachedNetworkImage(
+                    dl['image'],
                     fit: BoxFit.cover,
                     height: 70.0,
                     width: 70.0,
+                    enableFullScreen: false,
                   ),
                   const SizedBox(width: 10.0),
                   Flexible(

@@ -28,7 +28,7 @@ class ExploreLibraryPageState extends State<ExploreLibraryPage> {
     return Consumer<FreebooksHomeProvider>(
       builder: (BuildContext context, FreebooksHomeProvider homeProvider, Widget? child) {
         return Scaffold(
-          backgroundColor: AppColor.getMain(),
+          backgroundColor: AppColor.scaffold,
           body: BodyBuilder(
             apiRequestStatus: homeProvider.apiRequestStatus,
             child: _buildBodyList(homeProvider),

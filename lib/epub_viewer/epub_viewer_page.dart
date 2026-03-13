@@ -19,11 +19,11 @@ class EPUBViewerPage extends StatelessWidget {
       id: AppPageIdConstants.epubViewer,
       init: EPUBViewerController(),
       builder: (controller) => Obx(()=> Scaffold(
-        backgroundColor: AppColor.main50,
+        backgroundColor: AppColor.scaffold,
         appBar: EPUBViewerAppBar(title: controller.epubTitle),
         drawer: controller.epubReaderController != null ? Drawer(
             child: Container(
-              color: AppColor.drawer,
+              color: AppColor.surfaceCard,
               child: EpubViewTableOfContents(controller: controller.epubReaderController!,
               ),
             ),
