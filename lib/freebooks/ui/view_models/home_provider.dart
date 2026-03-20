@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:neom_core/app_config.dart';
+import 'package:neom_core/utils/neom_error_logger.dart';
 
 import '../../data/freebooks_api.dart';
 import '../../domain/models/category_feed.dart';
@@ -24,8 +25,8 @@ class FreebooksHomeProvider with ChangeNotifier {
       // CategoryFeed newReleases = await api.getCategory(FreebooksAPI.recent);
       setRecent(spanishBooks);
       setApiRequestStatus(APIRequestStatus.loaded);
-    } catch (e) {
-      AppConfig.logger.e(e.toString());
+    } catch (e, st) {
+      NeomErrorLogger.recordError(e, st, module: 'neom_freebooks', operation: 'getFeeds');
       checkError(e);
     }
   }

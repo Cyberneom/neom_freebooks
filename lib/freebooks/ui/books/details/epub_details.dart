@@ -5,7 +5,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:sint/sint.dart';
 import 'package:neom_commons/ui/theme/app_color.dart';
 import 'package:neom_commons/ui/widgets/app_circular_progress_indicator.dart';
-import 'package:neom_commons/ui/widgets/appbar_child.dart';
 import 'package:neom_commons/ui/widgets/right_side_company_logo.dart';
 import 'package:neom_core/utils/constants/app_route_constants.dart';
 import 'package:provider/provider.dart';
@@ -56,8 +55,8 @@ class EPUBDetailsState extends State<EPUBDetails> {
           Widget? child) {
         return Scaffold(
           backgroundColor: AppColor.surfaceElevated,
-          appBar: AppBarChild(
-            actionWidgets: const [
+          appBar: SintAppBar(
+            actions: const [
               RightSideCompanyLogo()
             ],
           ),

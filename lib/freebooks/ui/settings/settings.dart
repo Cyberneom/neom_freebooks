@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:sint/sint.dart';
 
 
 import '../../freebooks_router.dart';
@@ -59,11 +60,9 @@ class ProfileState extends State<Profile> {
     }
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: SintAppBar(
         centerTitle: true,
-        title: const Text(
-          'Settings',
-        ),
+        title: 'Settings',
       ),
       body: ListView.separated(
         padding: const EdgeInsets.symmetric(horizontal: 10),

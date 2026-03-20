@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:neom_core/utils/platform/core_io.dart';
 import 'package:neom_core/app_config.dart';
+import 'package:neom_core/utils/neom_error_logger.dart';
 import 'package:neom_core/app_properties.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -33,8 +34,8 @@ class FreebooksDetailsProvider extends ChangeNotifier {
       CategoryFeed feed = await api.getCategory(url);
       setRelated(feed);
       setLoading(false);
-    } catch (e) {
-      AppConfig.logger.e(e.toString());
+    } catch (e, st) {
+      NeomErrorLogger.recordError(e, st, module: 'neom_freebooks', operation: 'getBooksFeed');
     }
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:sint/sint.dart';
 
 import '../../domain/models/freebook.dart';
 import '../view_models/favorites_provider.dart';
@@ -37,11 +38,9 @@ class FavoritesState extends State<Favorites> {
       builder: (BuildContext context, FreebooksFavoritesProvider favoritesProvider,
           Widget? child) {
         return Scaffold(
-          appBar: AppBar(
+          appBar: SintAppBar(
             centerTitle: true,
-            title: const Text(
-              'Favorites',
-            ),
+            title: 'Favorites',
           ),
           body: favoritesProvider.favorites.isEmpty
               ? _buildEmptyListView()

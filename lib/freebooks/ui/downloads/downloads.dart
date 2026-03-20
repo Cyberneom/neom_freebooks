@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:neom_commons/ui/widgets/images/handled_cached_network_image.dart';
 import 'package:neom_core/app_config.dart';
+import 'package:sint/sint.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../data/download_helper.dart';
@@ -37,9 +38,9 @@ class DownloadsState extends State<Downloads> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: SintAppBar(
         centerTitle: true,
-        title: const Text('Downloads'),
+        title: 'Downloads',
       ),
       body: dls.isEmpty ? _buildEmptyListView() : _buildBodyList(),
     );

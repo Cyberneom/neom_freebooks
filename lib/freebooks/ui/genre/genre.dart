@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:neom_commons/ui/theme/app_color.dart';
-import 'package:neom_commons/ui/widgets/appbar_child.dart';
+import 'package:sint/sint.dart';
 import 'package:provider/provider.dart';
 
 import '../../domain/models/freebook.dart';
@@ -40,7 +40,7 @@ class GenreState extends State<Genre> {
     return Consumer(
       builder: (BuildContext context, FreebooksGenreProvider provider, Widget? child) {
         return Scaffold(
-          appBar: AppBarChild(title: widget.title, color: AppColor.bondiBlue75,),
+          appBar: SintAppBar(title: widget.title, color: AppColor.bondiBlue75,),
           backgroundColor: AppColor.scaffold,
           body: _buildBody(provider),
         );

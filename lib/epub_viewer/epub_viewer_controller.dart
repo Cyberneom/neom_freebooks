@@ -7,6 +7,7 @@ import 'package:sint/sint.dart';
 import 'package:http/http.dart' as http;
 import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
 import 'package:neom_core/app_config.dart';
+import 'package:neom_core/utils/neom_error_logger.dart';
 import 'package:neom_core/domain/model/app_profile.dart';
 import 'package:neom_core/domain/use_cases/user_service.dart';
 
@@ -92,8 +93,8 @@ class EPUBViewerController extends SintController {
 
       }
       isLoading.value = false;
-    } catch (e) {
-      AppConfig.logger.e(e);
+    } catch (e, st) {
+      NeomErrorLogger.recordError(e, st, module: 'neom_freebooks', operation: 'onInit');
     }
   }
 
@@ -103,8 +104,8 @@ class EPUBViewerController extends SintController {
     AppConfig.logger.d("EPUB View Controller Ready");
     try {
 
-    } catch (e) {
-      AppConfig.logger.e(e.toString());
+    } catch (e, st) {
+      NeomErrorLogger.recordError(e, st, module: 'neom_freebooks', operation: 'onReady');
     }
 
     update([AppPageIdConstants.epubViewer]);
