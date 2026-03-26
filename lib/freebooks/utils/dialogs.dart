@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:sint/sint.dart';
 
 import 'package:flutter/material.dart';
 import 'package:neom_core/app_properties.dart';
@@ -47,7 +48,7 @@ class Dialogs {
                           color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
-                      onPressed: () => Navigator.pop(context),
+                      onPressed: () => Sint.back(),
                     ),
                   ),
                   SizedBox(

@@ -31,7 +31,7 @@ class EPUBViewerAppBar extends StatelessWidget implements PreferredSizeWidget {
                 decoration: TextDecoration.underline
             ),
           ),
-          onPressed: ()=> Navigator.pop(context)
+          onPressed: ()=> Sint.back()
         ),
       ],
     );

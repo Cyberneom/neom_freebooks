@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../../utils/constants/freebooks_constants.dart';
 import 'custom_alert.dart';
+import 'package:sint/sint.dart';
 
 class DownloadAlert extends StatefulWidget {
   final String url;
@@ -33,7 +34,7 @@ class DownloadAlertState extends State<DownloadAlert> {
 
         //Check if download is complete and close the alert dialog
         if (receivedBytes == totalBytes) {
-          Navigator.pop(context, '${FreebooksConstants.formatBytes(total, 1)}');
+          Sint.back(result: '${FreebooksConstants.formatBytes(total, 1)}');
         }
       },
     );

@@ -139,7 +139,7 @@ class ProfileState extends State<Profile> {
                   textStyle: TextStyle(
                 color: Theme.of(context).colorScheme.secondary,
               )),
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Sint.back(),
               child: const Text('Close'),
             ),
           ],
